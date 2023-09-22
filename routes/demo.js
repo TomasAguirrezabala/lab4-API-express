@@ -5,6 +5,6 @@ const rutas = Router();
 
 rutas.get('/Pokemons', getPokemons);
 rutas.get('/Pokemon/:id', getPokemon);
-rutas.get('/Abilities', getAbilities);
+rutas.get('/Ability/:id', getAbilities);
 
 module.exports = rutas;
