@@ -3,7 +3,7 @@ const { request, response } = require('express');
 
 const getPokemons = async (req = request, res = response) => {
   try {
-    const { limit = 10, offset = 0 } = req.query;
+    const { limit = 50, offset = 0 } = req.query;
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
     const pokemons = response.data.results;
     res.status(200).json(pokemons);
