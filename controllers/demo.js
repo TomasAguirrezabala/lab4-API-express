@@ -25,10 +25,11 @@ const getPokemon = async (req = request, res = response) => {
   }
 };
 
-const getAbilities = async (req = request, res = response) => {
+const getPokemonsType = async (req = request, res = response) => {
+  let query_params = '';
+  query_params += type && `type=${type}`;
   try {
-    const { id } = req.params;
-    const response = await axios.get(`https://pokeapi.co/api/v2/ability/${id}`);
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?${query_params}`);
     const ability = response.data;
     res.status(200).json(ability);
   } catch (error) {
@@ -40,5 +41,5 @@ const getAbilities = async (req = request, res = response) => {
 module.exports = {
   getPokemons,
   getPokemon,
-  getAbilities,
+  getPokemonsType,
 };
