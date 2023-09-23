@@ -29,7 +29,8 @@ const getPokemonsType = async (req = request, res = response) => {
   let query_params = '';
   query_params += type && `type=${type}`;
   try {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?${query_params}`);
+    const { id } = req.params;
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}?${query_params}`);
     const ability = response.data;
     res.status(200).json(ability);
   } catch (error) {
