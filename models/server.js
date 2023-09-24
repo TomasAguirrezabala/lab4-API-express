@@ -29,7 +29,7 @@ class Server{
             res.send('Home');
         }); */
 
-        this.app.use('/api/v1/demo', require('../routes/demo'));
+        this.app.use('/api/v1/pokemons', require('../routes/pokemons'));
 
         this.app.all('*', (req, res) => {
             res.status(404).json({message:'404 Page Not Found'})

@@ -25,22 +25,23 @@ const getPokemon = async (req = request, res = response) => {
   }
 };
 
-const getPokemonsType = async (req = request, res = response) => {
+const getAbilitiesLista = async (req = request, res = response) => {
+  const {limit, offset } = req.query;
   let query_params = '';
-  query_params += type && `type=${type}`;
+  query_params += limit && `limit=${limit}`;
+  query_params += offset && `&offset=${offset}`;
   try {
-    const { id } = req.params;
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}?${query_params}`);
+    const response = await axios.get(`https://pokeapi.co/api/v2/ability/?${query_params}`);
     const ability = response.data;
     res.status(200).json(ability);
   } catch (error) {
     console.error(error);
-    res.status(404).json({ error: 'Habilidad no encontrada' });
+    res.status(500).json({ error: 'Error inesperado' });
   }
 };
 
 module.exports = {
   getPokemons,
   getPokemon,
-  getPokemonsType,
+  getAbilitiesLista,
 };
