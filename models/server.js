@@ -24,7 +24,7 @@ class Server{
         this.app.use(express.static('public'));
 
         const validateApiKey = () => (req, res) => {
-            const passedKey = req.query['api-key'];  
+            const passedKey = req.headers['x-api-key'];   
             if(passedKey === process.env.API_KEY){
                 return res.status(200).json({ mensaje: "Clave válida" });
             }else{
