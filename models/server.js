@@ -31,7 +31,8 @@ class Server{
         if (passedKey === API_KEY) {
             next(); // Si la API_KEY es válida, continúa con la solicitud
         } else {
-            res.status(401).json({ error: 'Unauthorized' }); // Si la API_KEY no es válida, retorna un error 401
+            const api = process.env.API_KEY;
+            res.status(401).json({ error: console.log(api) }); // Si la API_KEY no es válida, retorna un error 401
         }
         });
 
