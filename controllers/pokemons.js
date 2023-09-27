@@ -8,7 +8,7 @@ const getPokemons = async (req = request, res = response) => {
     console.log('API_KEY de variables de entorno:', miApi);
   try { 
     if (api_key === miApi){
-      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?api_key=${api}&limit=${limit}&offset=${offset}`);
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?api_key=${miApi}&limit=${limit}&offset=${offset}`);
       const pokemons = response.data.results;
       res.status(200).json(pokemons);
     }else{
