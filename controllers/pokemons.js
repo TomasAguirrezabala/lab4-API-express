@@ -3,16 +3,19 @@ const { request, response } = require('express');
 
 const getPokemons = async (req = request, res = response) => {
   try {
-    const { limit = 50, offset = 0 } = req.query;
-    const api = process.env.API_KEY;
-    console.log(api)
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?api_key=${api}&limit=${limit}&offset=${offset}`);
-    const pokemons = response.data.results;
-    res.status(200).json(pokemons);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error inesperado' });
-  }
+    const { limit = 50, offset = 0, api } = req.query;
+    const miApi = process.env.API_KEY;
+    if (api === miApi){
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?api_key=${api}&limit=${limit}&offset=${offset}`);
+      const pokemons = response.data.results;
+      res.status(200).json(pokemons);
+    }else{
+      res.status(401).json({error: 'Unauthorized'})
+    }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error inesperado' });
+    }
 };
 
 const getPokemon = async (req = request, res = response) => {
