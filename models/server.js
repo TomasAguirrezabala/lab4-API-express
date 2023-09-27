@@ -26,6 +26,7 @@ class Server{
         const API_KEY = process.env.API_KEY;
         this.app.use((req, res, next) => {
         const passedKey = req.headers['x-api-key'] || req.query.api_key;
+        console.log(passedKey)
 
         if (passedKey === API_KEY) {
             next(); // Si la API_KEY es válida, continúa con la solicitud
