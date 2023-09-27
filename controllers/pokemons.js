@@ -31,7 +31,7 @@ const getAbilitiesLista = async (req = request, res = response) => {
   const {limit, offset } = req.query;
   const api = process.env.API_KEY;
   let query_params = '';
-  query_params += limit && `$limit=${limit}`;
+  query_params += limit && `&limit=${limit}`;
   query_params += offset && `&offset=${offset}`;
   try {
     const response = await axios.get(`https://pokeapi.co/api/v2/ability/?api_key=111${query_params}`);
