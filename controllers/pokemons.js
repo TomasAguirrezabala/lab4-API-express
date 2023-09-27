@@ -2,12 +2,12 @@ const axios = require('axios');
 const { request, response } = require('express');
 
 const getPokemons = async (req = request, res = response) => {
-    const { limit = 50, offset = 0, api } = req.query;
+    const { limit = 50, offset = 0, api_key } = req.query;
     const miApi = process.env.API_KEY;
-    console.log('API_KEY de consulta:', api);
+    console.log('API_KEY de consulta:', api_key);
     console.log('API_KEY de variables de entorno:', miApi);
   try { 
-    if (api === miApi){
+    if (api_key === miApi){
       const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?api_key=${api}&limit=${limit}&offset=${offset}`);
       const pokemons = response.data.results;
       res.status(200).json(pokemons);
