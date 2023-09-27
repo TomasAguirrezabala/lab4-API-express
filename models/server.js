@@ -22,6 +22,16 @@ class Server{
         //Una vez que se configura esta sección publica, NO 
         //es posible utilizar
         this.app.use(express.static('public'));
+
+        const validateApiKey = () => (req, res) => {
+            const passedKey = req.query['api-key'];  
+            if(passedKey === process.env.API_KEY){
+                return res.status(200).json({ mensaje: "Clave válida" });
+            }else{
+                return res.status(401).json({ mensaje: "Clave no válida" });
+            }
+};
+
     }
 
     routers(){
@@ -45,4 +55,4 @@ class Server{
 
 }
 
-module.exports = Server;
+module.exports = Server, validateApiKey;
