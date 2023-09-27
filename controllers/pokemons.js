@@ -18,7 +18,7 @@ const getPokemon = async (req = request, res = response) => {
   try {
     const { id } = req.params;
     const api = process.env.API_KEY;
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/?api_key=${api}`);
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}?api_key=${api}`);
     const pokemon = response.data;
     res.status(200).json(pokemon);
   } catch (error) {
@@ -34,7 +34,7 @@ const getAbilitiesLista = async (req = request, res = response) => {
   query_params += limit && `&limit=${limit}`;
   query_params += offset && `&offset=${offset}`;
   try {
-    const response = await axios.get(`https://pokeapi.co/api/v2/ability/?api_key=123${query_params}`);
+    const response = await axios.get(`https://pokeapi.co/api/v2/ability?api_key=123${query_params}`);
     const abilities = response.data;
     const results = abilities.results;
     res.status(200).json(results);
