@@ -55,4 +55,4 @@ class Server{
 
 }
 
-module.exports = Server, validateApiKey;
+module.exports = Server;
