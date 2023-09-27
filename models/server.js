@@ -24,7 +24,7 @@ class Server{
         this.app.use(express.static('public'));
 
         const API_KEY = process.env.API_KEY;
-        app.use((req, res, next) => {
+        this.app.use((req, res, next) => {
         const passedKey = req.headers['x-api-key'] || req.query.api_key;
 
         if (passedKey === API_KEY) {
